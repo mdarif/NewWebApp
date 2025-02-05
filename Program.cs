@@ -1,48 +1,40 @@
 /// <summary>
-/// Entry point for the ASP.NET Core web application.
-/// This minimal API application provides a REST API for managing todos.
+/// Demonstrates the differences between double and decimal numeric types in C#,
+/// including division operations and value ranges.
 /// </summary>
 
-// Initialize the application builder with default configuration
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+// Double division demonstration
+// Shows how double handles division with potential infinite decimal places
+double a = 1.0;
+double b = 3.0;
+Console.WriteLine(a / b);  // Outputs approximate value with double precision
+
+// Decimal division demonstration
+// Shows how decimal handles division with higher precision for financial calculations
+decimal c = 1.0M;
+decimal d = 3.0M;
+Console.WriteLine(c / d);  // Outputs more precise decimal value
+
+// Decimal range demonstration
+// Shows the minimum and maximum values that can be stored in a decimal type
+decimal min = decimal.MinValue;
+decimal max = decimal.MaxValue;
+Console.WriteLine($"The range of the decimal type is {min} to {max}");
 
 /// <summary>
-/// In-memory storage for Todo items.
-/// Note: This is temporary storage that will be cleared when the application restarts.
+/// Calculates the area of a circle using the formula A = πr²
 /// </summary>
-var todos = new List<Todo>();
 
-/// <summary>
-/// POST endpoint to create a new todo item.
-/// Route: /todos
-/// </summary>
-/// <remarks>
-/// Sample request:
-/// POST /todos
-/// {
-///     "id": 1,
-///     "name": "Complete documentation",
-///     "dueDate": "2024-02-20T10:00:00",
-///     "isCompleted": false
-/// }
-/// </remarks>
-/// <param name="task">The todo item to create</param>
-/// <returns>Created response with the new todo item</returns>
-app.MapPost("/todos", (Todo task) =>
+// Define the radius in centimeters
+double radius = 2.50;
+
+// Calculate the area using Math.PI and Math.Pow
+double area = Math.PI * Math.Pow(radius, 2);
+
+// Display the result with 2 decimal places
+Console.WriteLine($"The area of a circle with radius {radius:F2} cm is {area:F2} square centimeters");
+
+for (int i = 0; i < 10; i++)
 {
-    todos.Add(task);
-    return TypedResults.Created("/todos/{id}", task);
-});
-
-// Starts the web application and begins listening for HTTP requests
-app.Run();
-
-/// <summary>
-/// Represents a todo item in the application
-/// </summary>
-/// <param name="Id">Unique identifier for the todo item</param>
-/// <param name="Name">Description of the todo item</param>
-/// <param name="DueDate">Deadline for completing the todo item</param>
-/// <param name="IsCompleted">Status indicating whether the todo item is completed</param>
-public record Todo(int Id, string Name, DateTime DueDate, bool IsCompleted);
+    Console.WriteLine(i);
+}

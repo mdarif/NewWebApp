@@ -127,7 +127,10 @@ List<int> scores2 = [97, 92, 81, 60];
 var scoreQuery2 = scores2.Where(score => score > 80).
             OrderByDescending(score => score);
 
-List<int> myScores = scoreQuery2.ToList();
+// Convert the LINQ query result to a List<int> using collection expression syntax
+// The spread operator (..) creates a new list containing all elements from scoreQuery2
+// Alternative method: scoreQuery2.ToList() achieves the same result
+List<int> myScores = [.. scoreQuery2];
 
 foreach (var score in myScores)
 {

@@ -1,7 +1,4 @@
-/// <summary>
-/// Demonstrates the differences between double and decimal numeric types in C#,
-/// including division operations and value ranges.
-/// </summary>
+using NewWebApp;
 
 // Double division demonstration
 // Shows how double handles division with potential infinite decimal places
@@ -20,10 +17,6 @@ Console.WriteLine(c / d);  // Outputs more precise decimal value
 decimal min = decimal.MinValue;
 decimal max = decimal.MaxValue;
 Console.WriteLine($"The range of the decimal type is {min} to {max}");
-
-/// <summary>
-/// Calculates the area of a circle using the formula A = πr²
-/// </summary>
 
 // Define the radius in centimeters
 double radius = 2.50;
@@ -82,7 +75,6 @@ foreach (var number in numbers)
     Console.WriteLine($"{number}");
 }
 
-
 // Language Integrated Query (LINQ) and IEnumerable [Pt 15] | C# for Beginners 
 // from https://www.youtube.com/watch?v=4ro5UCqU0P4
 
@@ -135,4 +127,38 @@ List<int> myScores = [.. scoreQuery2];
 foreach (var score in myScores)
 {
     Console.WriteLine(score);
+}
+
+// Object-oriented Programming (OOP) [Pt 18] | C# for Beginners
+// from https://www.youtube.com/watch?v=Vp0vVzJgJ5g
+var account = new BankAccount("Mohammad Arif", 1000);
+Console.WriteLine($"Account {account.Number} was created for {account.Owner} with {account.Balance} balance.");
+
+account.MakeWithdrawal(500, DateTime.Now, "Rent payment");
+Console.WriteLine(account.Balance);
+account.MakeDeposit(100, DateTime.Now, "friend paid me back");
+Console.WriteLine(account.Balance);
+
+Console.WriteLine(account.GetAccountHistory());
+
+// Test that the initial balances must be positive:
+try
+{
+    var invalidAccount = new BankAccount("invalid", -55);
+}
+catch (ArgumentOutOfRangeException e)
+{
+    Console.WriteLine("Exception caught creating account with negative balance");
+    Console.WriteLine(e.ToString());
+}
+
+// Test for a negative balance
+try
+{
+    account.MakeWithdrawal(750, DateTime.Now, "Attempt to overdraw");
+}
+catch (InvalidOperationException e)
+{
+    Console.WriteLine("Exception caught trying to overdraw");
+    Console.WriteLine(e.ToString());
 }

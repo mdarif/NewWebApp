@@ -142,7 +142,7 @@ Console.WriteLine(account.Balance);
 Console.WriteLine(account.GetAccountHistory());
 
 // Test that the initial balances must be positive:
-try
+/* try
 {
     var invalidAccount = new BankAccount("invalid", -55);
 }
@@ -150,10 +150,10 @@ catch (ArgumentOutOfRangeException e)
 {
     Console.WriteLine("Exception caught creating account with negative balance");
     Console.WriteLine(e.ToString());
-}
+} */
 
 // Test for a negative balance
-try
+/* try
 {
     account.MakeWithdrawal(750, DateTime.Now, "Attempt to overdraw");
 }
@@ -161,4 +161,16 @@ catch (InvalidOperationException e)
 {
     Console.WriteLine("Exception caught trying to overdraw");
     Console.WriteLine(e.ToString());
-}
+} */
+
+// Create instances of different pets
+var cat = new Cat("Whiskers");
+var dog = new Dog("Buddy");
+
+// Test the pets
+Console.WriteLine(cat.ToString());  // Will output something like: "Pet: Whiskers and I am a Cat and I say Meow"
+Console.WriteLine(dog.ToString());  // Will output something like: "Pet: Buddy and I am a Dog and I say Woof"
+
+// You can also test just the sounds
+Console.WriteLine($"{cat.Name} says: {cat.MakeSound()}");  // Whiskers says: Meow
+Console.WriteLine($"{dog.Name} says: {dog.MakeSound()}");  // Buddy says: Woof
